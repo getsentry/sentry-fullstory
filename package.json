@@ -1,0 +1,22 @@
+{
+  "name": "@sentry/fullstory",
+  "version": "0.0.1",
+  "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsentry/sentry-fullstory.git"
+  },
+  "author": "Stephen Cefali",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/getsentry/sentry-fullstory/issues"
+  },
+  "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
+  "peerDependencies": {
+    "@sentry/browser": ">=4.0.0"
+  }
+}
