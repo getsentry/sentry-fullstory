@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/browser';
 
-import * as FullStory from './FullStoryWrapper';
+// NOTE: this will be a package hosted on NPM soon
+import FullStory from './fullstory';
 
 /**
  * This integration creates a link from the Sentry Error to the FullStory replay.
