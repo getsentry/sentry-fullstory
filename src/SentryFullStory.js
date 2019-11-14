@@ -9,10 +9,10 @@ import * as FullStory from './FullStoryWrapper';
  */
 
 class SentryFullStory {
-  constructor(sentryOrg, sentryProject) {
+  constructor(sentryOrg, options = {}) {
     this.name = 'SentryFullStory';
     this.sentryOrg = sentryOrg;
-    this.sentryProject = sentryProject;
+    this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
   setupOnce() {
     Sentry.addGlobalEventProcessor((event, hint) => {
@@ -31,10 +31,10 @@ class SentryFullStory {
           }
         };
 
+        const sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/?query=${hint.event_id}`;
+
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
-        FullStory.event('Sentry Error', {
-          sentryUrl: `https://sentry.io/organizations/${this.sentryOrg}/projects/${this.sentryProject}/events/${hint.event_id}/`
-        });
+        FullStory.event('Sentry Error', { sentryUrl });
       }
       return event;
     });
