@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/browser';
 
 import * as FullStory from './FullStoryWrapper';
+import * as util from './util';
 
 /**
  * This integration creates a link from the Sentry Error to the FullStory replay.
@@ -31,7 +32,19 @@ class SentryFullStory {
           }
         };
 
-        const sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/?query=${hint.event_id}`;
+        let sentryUrl;
+        try {
+          //No docs on this but the SDK team assures me it works unless you bind another Sentry client
+          const { dsn } = Sentry.getCurrentHub()
+            .getClient()
+            .getOptions();
+          const projectId = util.getProjectIdFromSentryDsn(dsn);
+          sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
+        } catch (err) {
+          console.error('Error retrieving project ID from DSN');
+          //TODO: Could put link to a help here
+          sentryUrl = 'Could not retrieve url';
+        }
 
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
         FullStory.event('Sentry Error', { sentryUrl });
