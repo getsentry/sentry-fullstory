@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser';
 
 // NOTE: this will be a package hosted on NPM soon
 import FullStory from './fullstory';
+import * as util from './util';
 
 /**
  * This integration creates a link from the Sentry Error to the FullStory replay.
@@ -10,10 +11,10 @@ import FullStory from './fullstory';
  */
 
 class SentryFullStory {
-  constructor(sentryOrg, sentryProject) {
+  constructor(sentryOrg, options = {}) {
     this.name = 'SentryFullStory';
     this.sentryOrg = sentryOrg;
-    this.sentryProject = sentryProject;
+    this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
   setupOnce() {
     Sentry.addGlobalEventProcessor((event, hint) => {
@@ -32,10 +33,22 @@ class SentryFullStory {
           }
         };
 
+        let sentryUrl;
+        try {
+          //No docs on this but the SDK team assures me it works unless you bind another Sentry client
+          const { dsn } = Sentry.getCurrentHub()
+            .getClient()
+            .getOptions();
+          const projectId = util.getProjectIdFromSentryDsn(dsn);
+          sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
+        } catch (err) {
+          console.error('Error retrieving project ID from DSN');
+          //TODO: Could put link to a help here
+          sentryUrl = 'Could not retrieve url';
+        }
+
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
-        FullStory.event('Sentry Error', {
-          sentryUrl: `https://sentry.io/organizations/${this.sentryOrg}/projects/${this.sentryProject}/events/${hint.event_id}/`
-        });
+        FullStory.event('Sentry Error', { sentryUrl });
       }
       return event;
     });
