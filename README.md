@@ -31,7 +31,7 @@ import SentryFullStory, { FullStory } from '@sentry/sentry-fullstory'
 FullStory.init({ orgId = '__FULLSTORY_ORG_ID__' });
 ```
 
-Replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in the FullStory recording snippet on your [FullStory settings page](https://help.fullstory.com/hc/en-us/articles/360020623514)
+Replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in the FullStory recording snippet on your [FullStory settings page](https://help.fullstory.com/hc/en-us/articles/360020623514).
 
 
 ### Setting up Sentry
