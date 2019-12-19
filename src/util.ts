@@ -3,7 +3,7 @@
  * taken from https://stackoverflow.com/questions/736513/how-do-i-parse-a-url-into-hostname-and-path-in-javascript
  * @param {string} url
  */
-const splitUrlIntoParts = url => {
+const splitUrlIntoParts = (url: string) => {
   const reURLInformation = new RegExp(
     [
       '^(https?:)//', // protocol
@@ -20,7 +20,7 @@ const splitUrlIntoParts = url => {
  * Get the project ID from a Sentry DSN
  * @param {string} dsn
  */
-export const getProjectIdFromSentryDsn = dsn => {
+export const getProjectIdFromSentryDsn = (dsn: string) => {
   const search = splitUrlIntoParts(dsn)[5];
   return search.replace('/', '');
 };

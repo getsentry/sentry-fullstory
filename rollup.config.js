@@ -1,13 +1,29 @@
-import babel from 'rollup-plugin-babel';
-import pkg from './package.json';
+import babel from "rollup-plugin-babel";
+import pkg from "./package.json";
 
 export default [
   {
-    input: 'src/index.js',
-    output: [{ file: pkg.main, format: 'esm' }],
+    input: "src/index.ts",
+    output: [
+      {
+        file: pkg.main,
+        format: "cjs"
+      },
+      {
+        file: pkg.module,
+        format: "es"
+      }
+    ],
+    external: [
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {})
+    ],
     plugins: [
+      typescript({
+        typescript: require("typescript")
+      }),
       babel({
-        exclude: ['node_modules/**']
+        exclude: ["node_modules/**"]
       })
     ]
   }
