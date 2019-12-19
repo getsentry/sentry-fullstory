@@ -26,7 +26,9 @@
   "peerDependencies": {
     "@sentry/browser": ">=4.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fullstorydev/browser": "^1.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "rimraf": "^3.0.0",
