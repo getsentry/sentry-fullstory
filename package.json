@@ -1,17 +1,16 @@
 {
   "name": "@sentry/fullstory",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist",
-    "build": "npm run clean && rollup -c"
+    "build": "yarn clean && rollup -c",
+    "watch": "yarn clean && rollup -cw"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -24,14 +23,19 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@sentry/browser": ">=4.0.0",
-    "@fullstorydev/browser": "^1.0.0"
+    "@fullstorydev/browser": ">=2.0.0",
+    "@sentry/browser": ">=4.0.0"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@fullstorydev/browser": "^2.0.0",
+    "@sentry/browser": "^5.10.2",
+    "@sentry/types": "^5.10.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
-    "rollup-plugin-babel": "^4.3.3"
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "typescript": "^3.7.3"
   }
 }

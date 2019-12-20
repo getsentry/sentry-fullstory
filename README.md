@@ -26,7 +26,7 @@ To set up the integration, both FullStory and Sentry need to be initialized. Ple
 
 ```
 import * as Sentry from '@sentry/browser';
-import FullStory from '@fullstorydev/browser';
+import * as FullStory from '@fullstorydev/browser';
 import SentryFullStory from '@sentry/sentry-fullstory';
 
 FullStory.init({ orgId = '__FULLSTORY_ORG_ID__' });
