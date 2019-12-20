@@ -1,7 +1,8 @@
-import * as Sentry from "@sentry/browser";
-import FullStory from "@fullstorydev/browser";
-import * as util from "./util";
-import { Event, EventHint } from "@sentry/types";
+import * as Sentry from '@sentry/browser';
+import { Event, EventHint } from '@sentry/types';
+import * as FullStory from '@fullstorydev/browser';
+
+import * as util from './util';
 
 /**
  * This integration creates a link from the Sentry Error to the FullStory replay.
@@ -15,13 +16,13 @@ type Options = {
 
 class SentryFullStory {
   public readonly name: string = SentryFullStory.id;
-  public static id: string = "SentryFullStory";
+  public static id: string = 'SentryFullStory';
   sentryOrg: string;
   baseSentryUrl: string;
 
   constructor(sentryOrg: string, options: Options = {}) {
     this.sentryOrg = sentryOrg;
-    this.baseSentryUrl = options.baseSentryUrl || "https://sentry.io";
+    this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
   setupOnce() {
     Sentry.addGlobalEventProcessor((event: Event, hint: EventHint) => {
@@ -36,7 +37,7 @@ class SentryFullStory {
           fullStory: {
             url:
               FullStory.getCurrentSessionURL(true) ||
-              "current session URL API not ready"
+              'current session URL API not ready'
           }
         };
 
@@ -49,13 +50,13 @@ class SentryFullStory {
           const projectId = util.getProjectIdFromSentryDsn(dsn);
           sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
         } catch (_err) {
-          console.error("Error retrieving project ID from DSN");
+          console.error('Error retrieving project ID from DSN');
           //TODO: Could put link to a help here
-          sentryUrl = "Could not retrieve url";
+          sentryUrl = 'Could not retrieve url';
         }
 
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
-        FullStory.event("Sentry Error", { sentryUrl });
+        FullStory.event('Sentry Error', { sentryUrl });
       }
       return event;
     });
