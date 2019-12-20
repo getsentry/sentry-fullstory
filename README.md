@@ -3,7 +3,7 @@ The Sentry-FullStory integration creates a link from the Sentry error to the Ful
 
 ## Pre-Requisites
 
-For the Sentry-FullStory integration to work, you must have the [Sentry browser SDK package](https://www.npmjs.com/package/@sentry/browser) and FullStory running. 
+For the Sentry-FullStory integration to work, you must have the [Sentry browser SDK package](https://www.npmjs.com/package/@sentry/browser) and FullStory running.
 
 ## Installation
 To install the stable version:
@@ -26,10 +26,11 @@ To set up the integration, both FullStory and Sentry need to be initialized. Ple
 
 ```
 import * as Sentry from '@sentry/browser';
-import SentryFullStory, { FullStory } from '@sentry/sentry-fullstory';
+import FullStory from '@fullstorydev/browser';
+import SentryFullStory from '@sentry/sentry-fullstory';
 
 FullStory.init({ orgId = '__FULLSTORY_ORG_ID__' });
- 
+
 Sentry.init({
   dsn: '__DSN__',
   integrations: [ new SentryFullStory('__SENTRY_ORG_SLUG__'), ],
