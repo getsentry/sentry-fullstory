@@ -35,7 +35,7 @@ class SentryFullStory {
         event.contexts = {
           ...event.contexts,
           fullStory: {
-            url:
+            fullStoryUrl:
               FullStory.getCurrentSessionURL(true) ||
               'current session URL API not ready'
           }
