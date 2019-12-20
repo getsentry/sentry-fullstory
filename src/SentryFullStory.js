@@ -1,7 +1,5 @@
 import * as Sentry from '@sentry/browser';
-
-// NOTE: this will be a package hosted on NPM soon
-import FullStory from './fullstory';
+import FullStory from '@fullstorydev/browser';
 import * as util from './util';
 
 /**
