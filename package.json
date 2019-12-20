@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@sentry/browser": ">=4.0.0"
+    "@sentry/browser": ">=4.0.0",
+    "@fullstorydev/browser": "^1.0.0"
   },
   "dependencies": {},
   "devDependencies": {
