@@ -1,13 +1,13 @@
 {
   "name": "@sentry/fullstory",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "rollup -c",
-    "watch": "rollup -cw"
+    "build": "yarn clean && rollup -c",
+    "watch": "yarn clean && rollup -cw"
   },
   "files": [
     "dist"
@@ -23,14 +23,14 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@fullstorydev/browser": "^1.0.0",
+    "@fullstorydev/browser": ">=2.0.0",
     "@sentry/browser": ">=4.0.0"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@fullstorydev/browser": "^1.0.0",
-    "@sentry/browser": ">=4.0.0",
+    "@fullstorydev/browser": "^2.0.0",
+    "@sentry/browser": "^5.10.2",
     "@sentry/types": "^5.10.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
