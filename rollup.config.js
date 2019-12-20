@@ -13,7 +13,7 @@ export default [
       },
       {
         file: pkg.module,
-        format: 'es'
+        format: 'esm'
       }
     ],
     external: [
