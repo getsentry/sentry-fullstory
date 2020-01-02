@@ -14,9 +14,12 @@ matrix:
   include:
     - name: 'deploy'
       node_js: '10'
-      script: npm pack
+      script:
+        - yarn
+        - yarn build
+        - yarn pack
       after_success:
-        - npm install -g @zeus-ci/cli
+        - yarn global add @zeus-ci/cli
         - zeus upload -t "application/tar+npm" *.tgz
 
 notifications:
