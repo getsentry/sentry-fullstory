@@ -11,12 +11,12 @@ To install the stable version:
 
 with npm:
 ```
-npm install --save sentry-fullstory
+npm install --save @sentry/fullstory
 ```
 
 with yarn:
 ```
-yarn add sentry-fullstory
+yarn add @sentry/fullstory
 ```
 
 
