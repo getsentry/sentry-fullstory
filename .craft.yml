@@ -8,3 +8,4 @@ targets:
   - name: npm
   - name: github
     tagPrefix: v
+    access: public
