@@ -36,13 +36,11 @@ const isError = (exception: string | Error): exception is Error => {
  * @param {EventHint} hint
  */
 export const getOriginalExceptionProperties = (hint: EventHint) => {
-  let name = '';
-  let message = '';
   if (isError(hint.originalException)) {
     const originalException = hint.originalException as Error;
-    name = originalException.name;
-    message = originalException.message;
+    const { name, message } = originalException;
+    return { name, message };
   }
 
-  return { name, message };
+  return {};
 };
