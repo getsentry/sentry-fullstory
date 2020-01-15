@@ -56,7 +56,10 @@ class SentryFullStory {
         }
 
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
-        FullStory.event('Sentry Error', { sentryUrl });
+        FullStory.event('Sentry Error', {
+          sentryUrl,
+          ...util.getOriginalExceptionProperties(hint)
+        });
       }
       return event;
     });
