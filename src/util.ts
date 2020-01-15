@@ -1,3 +1,5 @@
+import { EventHint } from '@sentry/types';
+
 /**
  * Split the URL into different parts
  * taken from https://stackoverflow.com/questions/736513/how-do-i-parse-a-url-into-hostname-and-path-in-javascript
@@ -23,4 +25,24 @@ const splitUrlIntoParts = (url: string) => {
 export const getProjectIdFromSentryDsn = (dsn: string) => {
   const search = splitUrlIntoParts(dsn)[5];
   return search.replace('/', '');
+};
+
+const isError = (exception: string | Error): exception is Error => {
+  return (exception as Error).message !== undefined;
+};
+
+/**
+ * Get the message and name properties from the original exception
+ * @param {EventHint} hint
+ */
+export const getOriginalExceptionProperties = (hint: EventHint) => {
+  let name = '';
+  let message = '';
+  if (isError(hint.originalException)) {
+    const originalException = hint.originalException as Error;
+    name = originalException.name;
+    message = originalException.message;
+  }
+
+  return { name, message };
 };

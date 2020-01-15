@@ -41,17 +41,6 @@ class SentryFullStory {
           }
         };
 
-        let name = '';
-        let message = '';
-        const isError = (exception: string | Error): exception is Error => {
-          return (exception as Error).message !== undefined;
-        };
-        if (isError(hint.originalException)) {
-          const originalException = hint.originalException as Error;
-          name = originalException.name;
-          message = originalException.message;
-        }
-
         let sentryUrl: string;
         try {
           //No docs on this but the SDK team assures me it works unless you bind another Sentry client
@@ -69,8 +58,7 @@ class SentryFullStory {
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
         FullStory.event('Sentry Error', {
           sentryUrl,
-          name,
-          message
+          ...util.getOriginalExceptionProperties(hint)
         });
       }
       return event;
