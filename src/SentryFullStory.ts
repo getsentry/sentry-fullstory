@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser';
 import { Event, EventHint } from '@sentry/types';
-import * as FullStory from '@fullstorydev/browser';
+import * as FullStory from '@fullstory/browser';
 
 import * as util from './util';
 

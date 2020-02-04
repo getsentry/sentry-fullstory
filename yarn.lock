@@ -134,10 +134,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fullstorydev/browser@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@fullstorydev/browser/-/browser-2.0.0.tgz#39858958c34bfa46eaf5d33a915a300c4889d2d2"
-  integrity sha512-qempD7zrZBviGjk7MBJTBrgz3taLp97CIlueiT34AOSYuPzp1SL14eUEoJ3YAOAyydNyW7f4axdQFbGmMmPCCA==
+"@fullstory/browser@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@fullstory/browser/-/browser-1.0.1.tgz#a513c13fe5f689f00bbd98bbcdb3d470da58e2e2"
+  integrity sha512-23PhplNWI77AxLYANKOMjDYOylaK4NnmlND498upH1xgYUDoH7E7SZVaXYwVCoeCAS2tFEstkyy4aLDue7EOTg==
 
 "@sentry/browser@^5.10.2":
   version "5.10.2"
