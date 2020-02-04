@@ -32,7 +32,7 @@ import * as Sentry from '@sentry/browser';
 import * as FullStory from '@fullstorydev/browser';
 import SentryFullStory from '@sentry/sentry-fullstory';
 
-FullStory.init({ orgId = '__FULLSTORY_ORG_ID__' });
+FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
 
 Sentry.init({
   dsn: '__DSN__',
