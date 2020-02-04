@@ -29,7 +29,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@fullstory/browser": "^1.0.0",
+    "@fullstory/browser": "^1.0.1",
     "@sentry/browser": "^5.10.2",
     "@sentry/types": "^5.10.0",
     "rimraf": "^3.0.0",
