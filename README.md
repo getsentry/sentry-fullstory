@@ -4,7 +4,7 @@ The Sentry-FullStory integration seamlessly integrates the Sentry and FullStory 
 
 ## Pre-Requisites
 
-For the Sentry-FullStory integration to work, you must have the [Sentry browser SDK package](https://www.npmjs.com/package/@sentry/browser) and the [FullStory browser SDK package](https://www.npmjs.com/package/@fullstorydev/browser).
+For the Sentry-FullStory integration to work, you must have the [Sentry browser SDK package](https://www.npmjs.com/package/@sentry/browser) and the [FullStory browser SDK package](https://www.npmjs.com/package/@fullstory/browser).
 
 ## Installation
 To install the stable version:
@@ -29,8 +29,8 @@ To set up the integration, both FullStory and Sentry need to be initialized. Ple
 
 ```
 import * as Sentry from '@sentry/browser';
-import * as FullStory from '@fullstorydev/browser';
-import SentryFullStory from '@sentry/sentry-fullstory';
+import * as FullStory from '@fullstory/browser';
+import SentryFullStory from '@sentry/sentry';
 
 FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
 
