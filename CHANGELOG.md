@@ -3,6 +3,7 @@
 ## 1.1.1
 
 Updating `@fullstorydev/browser` dependancies to `@fullstory/browser`
+Adds Typescript output files to dist
 
 ## 1.1.0
 
