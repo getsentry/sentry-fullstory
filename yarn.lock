@@ -134,7 +134,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fullstory/browser@^1.0.0":
+"@fullstory/browser@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@fullstory/browser/-/browser-1.0.1.tgz#a513c13fe5f689f00bbd98bbcdb3d470da58e2e2"
   integrity sha512-23PhplNWI77AxLYANKOMjDYOylaK4NnmlND498upH1xgYUDoH7E7SZVaXYwVCoeCAS2tFEstkyy4aLDue7EOTg==

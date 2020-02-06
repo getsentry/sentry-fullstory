@@ -4,6 +4,7 @@
   "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && rollup -c",
