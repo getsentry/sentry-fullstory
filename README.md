@@ -41,7 +41,7 @@ Sentry.init({
 });
   ```
 
-Replace `__SENTRY_ORG_SLUG__` with the organization for your slug. You can get that value from the URL of your sentry organization. Example: `https://sentry.io/organizations/fullstory/` where `fullstory` would be the value of `__SENTRY_ORG_SLUG__`.
+Replace `__SENTRY_ORG_SLUG__` with the slug of your organization. You can get that value from the URL of your sentry organization. Example: `https://sentry.io/organizations/fullstory/` where `fullstory` would be the value of `__SENTRY_ORG_SLUG__`.
 
 
 You also need to replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in the FullStory recording snippet on your [FullStory settings page](https://help.fullstory.com/hc/en-us/articles/360020623514).
