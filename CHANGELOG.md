@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+Fixed typo in Readme and updated instructions for new Security and Privacy page.
+
 ## 1.1.1
 
 Updating `@fullstorydev/browser` dependancies to `@fullstory/browser`
