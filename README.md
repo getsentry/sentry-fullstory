@@ -49,7 +49,7 @@ You also need to replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in t
 
 ### Sentry Settings Change
 
-In order for this integration to work properly, you need to whitelist the `fullStoryUrl` field in your Sentry settings. If you don't, the FullStory URL might be scrubbed because the session ID matches a credit card regex. To do this change, go to `Settings` -> `Security & Privacy` and add `fullStoryUrl` to the `Global Safe Fields` entry.
+In order for this integration to work properly, you need to whitelist the `fullStoryUrl` field in your Sentry settings. If you don't, the FullStory URL might be scrubbed because the session ID matches a credit card regex. To do this change, go to `Settings` -> `General Settings`, under `DATA SCRUBBING` section, add `fullStoryUrl` to the `Global Safe Fields` entry.
 
 
 ![Settings](https://i.imgur.com/zk0hShj.png)
