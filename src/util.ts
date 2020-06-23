@@ -12,7 +12,7 @@ const splitUrlIntoParts = (url: string) => {
       '(([^:/?#]*)(?::([0-9]+))?)', // host (hostname and port)
       '(/{0,1}[^?#]*)', // pathname
       '(\\?[^#]*|)', // search
-      '(#.*|)$' // hash
+      '(#.*|)$', // hash
     ].join('')
   );
   return url.match(reURLInformation);
@@ -35,8 +35,8 @@ const isError = (exception: string | Error): exception is Error => {
  * Get the message and name properties from the original exception
  * @param {EventHint} hint
  */
-export const getOriginalExceptionProperties = (hint: EventHint) => {
-  if (isError(hint.originalException)) {
+export const getOriginalExceptionProperties = (hint?: EventHint) => {
+  if (hint && isError(hint.originalException)) {
     const originalException = hint.originalException as Error;
     const { name, message } = originalException;
     return { name, message };

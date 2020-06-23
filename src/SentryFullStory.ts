@@ -25,7 +25,7 @@ class SentryFullStory {
     this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
   setupOnce() {
-    Sentry.addGlobalEventProcessor((event: Event, hint: EventHint) => {
+    Sentry.addGlobalEventProcessor((event: Event, hint?: EventHint) => {
       const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
       // Run the integration ONLY when it was installed on the current Hub
       if (self) {
@@ -37,16 +37,14 @@ class SentryFullStory {
           fullStory: {
             fullStoryUrl:
               FullStory.getCurrentSessionURL(true) ||
-              'current session URL API not ready'
-          }
+              'current session URL API not ready',
+          },
         };
 
         let sentryUrl: string;
         try {
           //No docs on this but the SDK team assures me it works unless you bind another Sentry client
-          const { dsn } = Sentry.getCurrentHub()
-            .getClient()
-            .getOptions();
+          const { dsn } = Sentry.getCurrentHub().getClient().getOptions();
           const projectId = util.getProjectIdFromSentryDsn(dsn);
           sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
         } catch (_err) {
@@ -58,7 +56,7 @@ class SentryFullStory {
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
         FullStory.event('Sentry Error', {
           sentryUrl,
-          ...util.getOriginalExceptionProperties(hint)
+          ...util.getOriginalExceptionProperties(hint),
         });
       }
       return event;
