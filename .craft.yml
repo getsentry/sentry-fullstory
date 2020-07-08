@@ -9,3 +9,10 @@ targets:
   - name: github
     tagPrefix: v
     access: public
+  - name: gcs
+    includeNames: /.*\.js.*$/
+    bucket: sentry-js-sdk
+    paths:
+      - path: /{{version}}/
+        metadata:
+          cacheControl: 'public, max-age=31536000'

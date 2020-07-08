@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.4
+
+Add CDN build target
+
 ## 1.1.3
 
 Add check for undefined error
