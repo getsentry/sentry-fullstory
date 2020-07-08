@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.3
+
+Add check for undefined error
+
+
 ## 1.1.2
 
 Fixed typo in Readme and updated instructions for new Security and Privacy page.
