@@ -40,7 +40,7 @@ const isError = (exception: string | Error): exception is Error => {
  */
 export const getOriginalExceptionProperties = (hint?: EventHint) => {
   if (hint && hint.originalException && isError(hint.originalException)) {
-    const originalException = hint.originalException as Error;
+    const originalException = hint.originalException;
     const { name, message } = originalException;
     return { name, message };
   }
