@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.4
+
+Adds better type checking and fixes error when hint.originalException is null
+
+
 ## 1.1.3
 
 Add check for undefined error
