@@ -26,6 +26,30 @@ class SentryFullStory {
   }
   setupOnce() {
     Sentry.addGlobalEventProcessor((event: Event, hint?: EventHint) => {
+      //Returns the sentry URL of the error
+      //If we cannot get the URL, return a string saying we cannot
+      const getSentryUrl = () => {
+        try {
+          //No docs on this but the SDK team assures me it works unless you bind another Sentry client
+          const { dsn } =
+            Sentry.getCurrentHub().getClient()?.getOptions() || {};
+          if (!dsn) {
+            console.error('No sn');
+            return 'Could not retrieve url';
+          }
+          if (!hint) {
+            console.error('No event hint');
+            return 'Could not retrieve url';
+          }
+          const projectId = util.getProjectIdFromSentryDsn(dsn);
+          return `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
+        } catch (err) {
+          console.error('Error retrieving project ID from DSN', err);
+          //TODO: Could put link to a help here
+          return 'Could not retrieve url';
+        }
+      };
+
       const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
       // Run the integration ONLY when it was installed on the current Hub
       if (self) {
@@ -40,22 +64,9 @@ class SentryFullStory {
               'current session URL API not ready',
           },
         };
-
-        let sentryUrl: string;
-        try {
-          //No docs on this but the SDK team assures me it works unless you bind another Sentry client
-          const { dsn } = Sentry.getCurrentHub().getClient().getOptions();
-          const projectId = util.getProjectIdFromSentryDsn(dsn);
-          sentryUrl = `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
-        } catch (_err) {
-          console.error('Error retrieving project ID from DSN');
-          //TODO: Could put link to a help here
-          sentryUrl = 'Could not retrieve url';
-        }
-
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped
         FullStory.event('Sentry Error', {
-          sentryUrl,
+          sentryUrl: getSentryUrl(),
           ...util.getOriginalExceptionProperties(hint),
         });
       }

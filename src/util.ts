@@ -23,8 +23,11 @@ const splitUrlIntoParts = (url: string) => {
  * @param {string} dsn
  */
 export const getProjectIdFromSentryDsn = (dsn: string) => {
-  const search = splitUrlIntoParts(dsn)[5];
-  return search.replace('/', '');
+  const parts = splitUrlIntoParts(dsn);
+  if (!parts) {
+    throw new Error('Cannot parse DSN');
+  }
+  return parts[5].replace('/', '');
 };
 
 const isError = (exception: string | Error): exception is Error => {
@@ -36,7 +39,7 @@ const isError = (exception: string | Error): exception is Error => {
  * @param {EventHint} hint
  */
 export const getOriginalExceptionProperties = (hint?: EventHint) => {
-  if (hint && isError(hint.originalException)) {
+  if (hint && hint.originalException && isError(hint.originalException)) {
     const originalException = hint.originalException as Error;
     const { name, message } = originalException;
     return { name, message };
