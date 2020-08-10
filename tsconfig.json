@@ -3,7 +3,7 @@
     "allowJs": false,
     "checkJs": false,
     "alwaysStrict": false,
-    "declaration": false,
+    "declaration": true,
     "declarationMap": false,
     "downlevelIteration": true,
     "inlineSources": false,

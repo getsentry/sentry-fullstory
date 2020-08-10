@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.5
+
+Adds the index.d.ts file that was accidentally removed in the previous version
+
 ## 1.1.4
 
 Adds better type checking and fixes error when hint.originalException is null
