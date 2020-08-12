@@ -1,56 +1,87 @@
-import * as Sentry from '@sentry/browser';
-import { Event, EventHint } from '@sentry/types';
 import * as FullStory from '@fullstory/browser';
+import { Event, EventHint, EventProcessor, Hub, Integration } from '@sentry/types';
 
 import * as util from './util';
-
-/**
- * This integration creates a link from the Sentry Error to the FullStory replay.
- * It also creates a link from the FullStory event to the Sentry error.
- * Docs on Sentry SDK integrations are here: https://docs.sentry.io/platforms/javascript/advance-settings/#dealing-with-integrations
- */
 
 type Options = {
   baseSentryUrl?: string;
 };
 
-class SentryFullStory {
-  public readonly name: string = SentryFullStory.id;
-  public static id: string = 'SentryFullStory';
-  sentryOrg: string;
-  baseSentryUrl: string;
-
-  constructor(sentryOrg: string, options: Options = {}) {
-    this.sentryOrg = sentryOrg;
-    this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
+/** Get current DSN from hub */
+function getDsnFromHub(hub: Hub): string | undefined {
+  const client = hub.getClient();
+  if (!client) {
+    return undefined;
   }
-  setupOnce() {
-    Sentry.addGlobalEventProcessor((event: Event, hint?: EventHint) => {
-      //Returns the sentry URL of the error
-      //If we cannot get the URL, return a string saying we cannot
-      const getSentryUrl = () => {
+
+  const options = client.getOptions();
+  return options.dsn;
+}
+
+/**
+ * Sentry Full Story integration.
+ *
+ * This integration creates a link from the Sentry Error to the FullStory replay.
+ * It also creates a link from the FullStory event to the Sentry error.
+ * Docs on Sentry SDK integrations are here: https://docs.sentry.io/platforms/javascript/advance-settings/#dealing-with-integrations
+ */
+class SentryFullStory implements Integration {
+  /**
+   * @inheritDoc
+   */
+  public static id: string = 'SentryFullStory';
+
+  /**
+   * @inheritDoc
+   */
+  public readonly name: string = SentryFullStory.id;
+
+  private readonly _baseSentryUrl: string;
+
+  constructor(private readonly _sentryOrg: string, options: Options = {}) {
+    this._baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public setupOnce(addGlobalEventProcessor: (callback: EventProcessor) => void, getCurrentHub: () => Hub): void {
+    addGlobalEventProcessor((event: Event, hint?: EventHint) => {
+      const hub = getCurrentHub();
+      if (!hub) {
+        // eslint-disable-next-line no-console
+        console.error('Could not access hub');
+        return event;
+      }
+
+      const dsn = getDsnFromHub(hub);
+
+      // Returns the sentry URL of the error
+      // If we cannot get the URL, return a string saying we cannot
+      const getSentryUrl = (): string => {
         try {
-          //No docs on this but the SDK team assures me it works unless you bind another Sentry client
-          const { dsn } =
-            Sentry.getCurrentHub().getClient()?.getOptions() || {};
           if (!dsn) {
-            console.error('No sn');
+            // eslint-disable-next-line no-console
+            console.error('No dsn');
             return 'Could not retrieve url';
           }
           if (!hint) {
+            // eslint-disable-next-line no-console
             console.error('No event hint');
             return 'Could not retrieve url';
           }
           const projectId = util.getProjectIdFromSentryDsn(dsn);
-          return `${this.baseSentryUrl}/organizations/${this.sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
+          return `${this._baseSentryUrl}/organizations/${this._sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.error('Error retrieving project ID from DSN', err);
-          //TODO: Could put link to a help here
+
+          // TODO: Could put link to a help here
           return 'Could not retrieve url';
         }
       };
 
-      const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
+      const self = hub.getIntegration(SentryFullStory);
       // Run the integration ONLY when it was installed on the current Hub
       if (self) {
         // getCurrentSessionURL isn't available until after the FullStory script is fully bootstrapped.
@@ -59,9 +90,7 @@ class SentryFullStory {
         event.contexts = {
           ...event.contexts,
           fullStory: {
-            fullStoryUrl:
-              FullStory.getCurrentSessionURL(true) ||
-              'current session URL API not ready',
+            fullStoryUrl: FullStory.getCurrentSessionURL(true) || 'current session URL API not ready',
           },
         };
         // FS.event is immediately ready even if FullStory isn't fully bootstrapped

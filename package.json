@@ -8,7 +8,13 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && rollup -c",
-    "watch": "yarn clean && rollup -cw"
+    "watch": "yarn clean && rollup -cw",
+    "lint": "yarn lint:prettier && yarn lint:eslint",
+    "lint:prettier": "prettier --check src/**/*.ts",
+    "lint:eslint": "eslint src/**/*.ts --cache --format stylish",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "fix:prettier": "prettier --write src/**/*.ts",
+    "fix:eslint": "eslint src/**/*.ts --format stylish --fix"
   },
   "files": [
     "dist"
@@ -31,8 +37,11 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@fullstory/browser": "^1.0.1",
+    "@sentry-internal/eslint-config-sdk": "^5.21.0",
     "@sentry/browser": "^5.10.2",
     "@sentry/types": "^5.10.0",
+    "eslint": "^7.6.0",
+    "prettier": "1.19.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
