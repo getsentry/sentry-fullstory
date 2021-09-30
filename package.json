@@ -25,18 +25,19 @@
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
     "@fullstory/browser": ">=1.0.0",
-    "@sentry/browser": ">=4.0.0"
+    "@sentry/browser": ">=6.0.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@fullstory/browser": "^1.0.1",
-    "@sentry/browser": "^5.10.2",
-    "@sentry/types": "^5.10.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.26.3",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^3.8"
+    "@babel/core": "^7.15.5",
+    "@fullstory/browser": "^1.4.9",
+    "@sentry/browser": "^6.13.2",
+    "@sentry/types": "^6.13.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.57.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
   }
 }
