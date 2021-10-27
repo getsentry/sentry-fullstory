@@ -38,5 +38,9 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-typescript2": "^0.25.3",
     "typescript": "^3.8"
+  },
+  "volta": {
+    "node": "12.19.0",
+    "yarn": "1.22.5"
   }
 }
