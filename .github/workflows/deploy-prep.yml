@@ -3,8 +3,9 @@ name: Deploy Prep
 on:
   push:
     branches:
-      - $default-branch
+      - master
       - release/**
+  pull_request:
 
 jobs:
   deploy_prep:
