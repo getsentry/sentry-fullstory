@@ -28,18 +28,8 @@ jobs:
 
       - name: Generate tarball artifact
         run: yarn pack
-
-  release_prep:
-    name: Release Prep
-    runs-on: ubuntu-latest
-    needs: deploy_prep
-
-    steps:
-      - uses: actions/checkout@v2
-      
-      - run: echo $(ls)
-      
-      - name: Upload artifacts for release
+        
+      - name: Upload artifact for release
         uses: actions/upload-artifact@v2
         with:
           path: ./*.tgz
