@@ -7,7 +7,7 @@ import * as util from './util';
 /**
  * This integration creates a link from the Sentry Error to the FullStory replay.
  * It also creates a link from the FullStory event to the Sentry error.
- * Docs on Sentry SDK integrations are here: https://docs.sentry.io/platforms/javascript/advance-settings/#dealing-with-integrations
+ * Docs on Sentry SDK integrations are here: https://docs.sentry.io/platforms/javascript/guides/angular/troubleshooting/#dealing-with-integrations
  */
 
 type Options = {
@@ -65,8 +65,8 @@ class SentryFullStory {
       }
 
       const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
-      // Run the integration ONLY when it was installed on the current Hub
-      if (self) {
+      // Run the integration ONLY when it was installed on the current Hub AND isn't a transaction
+      if (self && event.type !== 'transaction') {
         event.contexts = {
           ...event.contexts,
           fullStory: {
