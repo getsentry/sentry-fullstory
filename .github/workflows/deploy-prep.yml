@@ -14,18 +14,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install and cache node modules
-      - uses: actions/setup-node@v2
-      - with:
+      - name: Cache node modules
+        uses: actions/setup-node@v2
+        with:
           node-version: '12'
           cache: 'yarn'
-      - run: yarn install
+          
+      - name: Install node modules
+        run: yarn install
 
       - name: Build distributables
-      - run: yarn build
+        run: yarn build
 
       - name: Generate tarball artifact
-      - run: yarn pack
+        run: yarn pack
 
   release_prep:
     name: Release Prep
@@ -34,7 +36,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
       - name: Upload artifacts for release
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           path: ./*.tgz
