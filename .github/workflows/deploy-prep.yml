@@ -5,6 +5,7 @@ on:
     branches:
       - $default-branch
       - /^release\/.+$/
+  pull_request:
 
 jobs:
   deploy_prep:
