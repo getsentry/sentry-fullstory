@@ -37,7 +37,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - run: echo $(ls)
+      
       - name: Upload artifacts for release
         uses: actions/upload-artifact@v2
         with:
           path: ./*.tgz
+          if-no-files-found: error
