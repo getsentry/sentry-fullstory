@@ -1,0 +1,36 @@
+name: Deploy Prep
+
+on:
+  push:
+    branches:
+      - $default-branch
+      - release/**
+
+jobs:
+  deploy_prep:
+    name: Deploy Prep
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'yarn'
+
+      - name: Install node modules
+        run: yarn install
+
+      - name: Build distributables
+        run: yarn build
+
+      - name: Generate tarball artifact
+        run: yarn pack
+
+      - name: Upload artifact for release via getsentry/craft
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.sha }}
+          path: ${{ github.workspace }}/*.tgz
+          if-no-files-found: error
