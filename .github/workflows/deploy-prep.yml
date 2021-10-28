@@ -37,4 +37,4 @@ jobs:
       - name: Upload artifacts for release
       - uses: actions/upload-artifact@v2
         with:
-          path: *.tgz
+          path: ./*.tgz
