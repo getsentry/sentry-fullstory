@@ -92,4 +92,4 @@ When actively making changes the project should be run with `yarn watch`, to all
 
 ### Releases
 
-We use [craft](https://github.com/getsentry/craft) to generate consistent releases for this project. Ensure you have the proper permissions for Github and NPM if creating/publishing releases.
+We use [craft](https://github.com/getsentry/craft) and [publish](https://github.com/getsentry/publish) to generate consistent releases for this project. See the 'getsentry/publish' docs for instructions on how to setup a new release.
