@@ -1,8 +1,9 @@
 ---
+changelogPolicy: simple
 github:
   owner: getsentry
   repo: sentry-fullstory
-changelogPolicy: simple
+minVersion: "0.24.4"
 preReleaseCommand: bash scripts/craft-pre-release.sh
 targets:
   - name: npm
