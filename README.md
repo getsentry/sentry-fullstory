@@ -71,8 +71,6 @@ In FullStory, you should see an event called `Sentry Error` on the right sidebar
 
 ## Development
 
-To setup this module locally, you'll need a few things:
-
 ### Before you start...
 
 To get up and running with this project, you'll need a few things:
