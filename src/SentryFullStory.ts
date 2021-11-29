@@ -24,6 +24,11 @@ class SentryFullStory {
     this.sentryOrg = sentryOrg;
     this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
+
+  private doesFullStoryExist() {
+    return !!window[window['_fs_namespace']];
+  }
+
   setupOnce() {
     Sentry.addGlobalEventProcessor((event: Event, hint?: EventHint) => {
       //Returns the sentry URL of the error
@@ -52,7 +57,7 @@ class SentryFullStory {
 
       const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
       // Run the integration ONLY when it was installed on the current Hub AND isn't a transaction
-      if (self && event.type !== 'transaction') {
+      if (self && event.type !== 'transaction' && this.doesFullStoryExist()) {
         // getCurrentSessionURL isn't available until after the FullStory script is fully bootstrapped.
         // If an error occurs before getCurrentSessionURL is ready, make a note in Sentry and move on.
         // More on getCurrentSessionURL here: https://help.fullstory.com/develop-js/getcurrentsessionurl
