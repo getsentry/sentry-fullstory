@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.7
+
+Ensures Fullstory client is initalized before accessing it
 ## 1.1.6
 
 Ignores Sentry's performance monitoring transactions when creating FullStory events
