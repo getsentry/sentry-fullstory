@@ -1,6 +1,6 @@
 {
   "name": "@sentry/fullstory",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
