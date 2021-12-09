@@ -1,5 +1,5 @@
-import babel from '@rollup/plugin-babel';
-import typescript from '@rollup/plugin-typescript';
+import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
@@ -9,15 +9,11 @@ export default [
     output: [
       {
         file: pkg.main,
-        format: 'cjs',
-        exports: 'default',
-        sourcemap: 'hidden'
+        format: 'cjs'
       },
       {
         file: pkg.module,
-        format: 'esm',
-        exports: 'named',
-        sourcemap: 'hidden'
+        format: 'esm'
       }
     ],
     external: [
@@ -25,9 +21,10 @@ export default [
       ...Object.keys(pkg.peerDependencies || {})
     ],
     plugins: [
-      typescript(),
+      typescript({
+        typescript: require('typescript')
+      }),
       babel({
-        babelHelpers: 'bundled',
         exclude: ['node_modules/**']
       })
     ]
