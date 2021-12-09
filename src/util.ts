@@ -1,33 +1,11 @@
 import { EventHint } from '@sentry/types';
 
 /**
- * Split the URL into different parts
- * taken from https://stackoverflow.com/questions/736513/how-do-i-parse-a-url-into-hostname-and-path-in-javascript
- * @param {string} url
- */
-const splitUrlIntoParts = (url: string) => {
-  const reURLInformation = new RegExp(
-    [
-      '^(https?:)//', // protocol
-      '(([^:/?#]*)(?::([0-9]+))?)', // host (hostname and port)
-      '(/{0,1}[^?#]*)', // pathname
-      '(\\?[^#]*|)', // search
-      '(#.*|)$', // hash
-    ].join('')
-  );
-  return url.match(reURLInformation);
-};
-
-/**
  * Get the project ID from a Sentry DSN
  * @param {string} dsn
  */
 export const getProjectIdFromSentryDsn = (dsn: string) => {
-  const parts = splitUrlIntoParts(dsn);
-  if (!parts) {
-    throw new Error('Cannot parse DSN');
-  }
-  return parts[5].replace('/', '');
+  return new URL(dsn).pathname.replace('/', '');
 };
 
 const isError = (exception: string | Error): exception is Error => {
