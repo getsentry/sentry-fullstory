@@ -62,10 +62,8 @@ class SentryFullStory {
         try {
           return FullStory.getCurrentSessionURL(true) || 'Current session URL API not ready'
         } catch (e) {
-          if (e instanceof Error) {
-            return `Unable to get url: ${e.message}`
-          }
-          return 'Unable to get url'
+          const reason = e instanceof Error ? e.message : String(e)
+          return `Unable to get url: ${reason}`
         }
       }
 
