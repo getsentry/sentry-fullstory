@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.8
+
+Allow a custom FullStory Client to be passed as an option (e.g. from Segment)
+Catch exceptions when accessing the client's API methods
+
 ## 1.1.7
 
 Ensures Fullstory client is initalized before accessing it
