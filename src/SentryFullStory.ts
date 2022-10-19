@@ -1,8 +1,10 @@
-import * as Sentry from '@sentry/browser';
-import { Event, EventHint } from '@sentry/types';
-import * as FullStory from '@fullstory/browser';
+import { addGlobalEventProcessor, getCurrentHub } from '@sentry/core';
 
-import { doesFullStoryExist, getOriginalExceptionProperties, getSentryUrl } from './util';
+import {
+  doesFullStoryExist,
+  getOriginalExceptionProperties,
+  getSentryUrl,
+} from './util';
 import { FullStoryClient } from './types';
 
 /**
@@ -12,8 +14,8 @@ import { FullStoryClient } from './types';
  */
 
 type Options = {
+  client: FullStoryClient;
   baseSentryUrl?: string;
-  client?: FullStoryClient;
 };
 
 class SentryFullStory {
@@ -23,34 +25,43 @@ class SentryFullStory {
   baseSentryUrl: string;
   client: FullStoryClient;
 
-  constructor(sentryOrg: string, options: Options = {}) {
+  constructor(sentryOrg: string, options: Options) {
     this.sentryOrg = sentryOrg;
-    this.client = options.client || FullStory;
+    this.client = options.client;
     this.baseSentryUrl = options.baseSentryUrl || 'https://sentry.io';
   }
 
   setupOnce() {
-    Sentry.addGlobalEventProcessor((event: Event, hint?: EventHint) => {
-      const self = Sentry.getCurrentHub().getIntegration(SentryFullStory);
+    addGlobalEventProcessor(async (event, hint) => {
+      const self = getCurrentHub().getIntegration(SentryFullStory);
       // Run the integration ONLY when it was installed on the current Hub AND isn't a transaction
       if (self && event.type !== 'transaction' && doesFullStoryExist()) {
-
-        const getFullStoryUrl = () => {
+        const getFullStoryUrl = async () => {
           // getCurrentSessionURL isn't available until after the FullStory script is fully bootstrapped.
           // If an error occurs before getCurrentSessionURL is ready, make a note in Sentry and move on.
           // More on getCurrentSessionURL here: https://help.fullstory.com/develop-js/getcurrentsessionurl
           try {
-            return this.client.getCurrentSessionURL(true) || 'Current session URL API not ready'
+            const res = this.client.getCurrentSessionURL(true);
+            if (!res) {
+              return 'Current session URL API not ready';
+            }
+            if (typeof res === 'string') {
+              return res;
+            }
+
+            return await res;
           } catch (e) {
-            const reason = e instanceof Error ? e.message : String(e)
-            return `Unable to get url: ${reason}`
+            const reason = e instanceof Error ? e.message : String(e);
+            return `Unable to get url: ${reason}`;
           }
-        }
+        };
+
+        const fullStoryUrl = await getFullStoryUrl();
 
         event.contexts = {
           ...event.contexts,
           fullStory: {
-            fullStoryUrl: getFullStoryUrl()
+            fullStoryUrl,
           },
         };
 
@@ -64,7 +75,7 @@ class SentryFullStory {
             ...getOriginalExceptionProperties(hint),
           });
         } catch (e) {
-          console.debug('Unable to report sentry error details to FullStory')
+          console.debug('Unable to report sentry error details to FullStory');
         }
       }
 

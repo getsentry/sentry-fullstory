@@ -23,15 +23,12 @@
     "url": "https://github.com/getsentry/sentry-fullstory/issues"
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
-  "peerDependencies": {
-    "@fullstory/browser": ">=1.0.0",
-    "@sentry/browser": ">=4.0.0"
+  "peerDependencies": {},
+  "dependencies": {
+    "@sentry/core": "^7.16.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@fullstory/browser": "^1.0.1",
-    "@sentry/browser": "^5.10.2",
     "@sentry/types": "^5.10.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",

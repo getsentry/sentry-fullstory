@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+Refactoring the whole integration so it's platform agnostic.
+
+**BREAKING CHANGES:** users now must provide the `FullStory` client as an option in the args.
+
 ## 1.1.8
 
 Allow a custom FullStory Client to be passed as an option (e.g. from Segment)

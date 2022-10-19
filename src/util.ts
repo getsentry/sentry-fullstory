@@ -1,5 +1,5 @@
 import { EventHint } from '@sentry/types';
-import * as Sentry from '@sentry/browser';
+import { getCurrentHub } from '@sentry/core';
 
 /**
  * Returns true if Fullstory is installed correctly.
@@ -38,10 +38,14 @@ export const getOriginalExceptionProperties = (hint?: EventHint) => {
  * Returns the sentry URL of the error. If we cannot get the URL, return a
  * string saying we cannot.
  */
-export function getSentryUrl(args: { hint?: EventHint, sentryOrg: string, baseSentryUrl: string }) {
+export function getSentryUrl(args: {
+  hint?: EventHint;
+  sentryOrg: string;
+  baseSentryUrl: string;
+}) {
   try {
     // No docs on this but the SDK team assures me it works unless you bind another Sentry client
-    const { dsn } = Sentry.getCurrentHub().getClient()?.getOptions() || {};
+    const { dsn } = getCurrentHub().getClient()?.getOptions() || {};
     if (!dsn) {
       console.error('No sn');
       return 'Could not retrieve url';
