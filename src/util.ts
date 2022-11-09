@@ -1,5 +1,4 @@
-import { EventHint } from '@sentry/types';
-import { getCurrentHub } from '@sentry/core';
+import type { EventHint, Hub } from '@sentry/types';
 
 /**
  * Returns true if Fullstory is installed correctly.
@@ -38,24 +37,30 @@ export const getOriginalExceptionProperties = (hint?: EventHint) => {
  * Returns the sentry URL of the error. If we cannot get the URL, return a
  * string saying we cannot.
  */
-export function getSentryUrl(args: {
+export function getSentryUrl({
+  hint,
+  sentryOrg,
+  baseSentryUrl,
+  hub,
+}: {
   hint?: EventHint;
   sentryOrg: string;
   baseSentryUrl: string;
+  hub: Hub;
 }) {
   try {
     // No docs on this but the SDK team assures me it works unless you bind another Sentry client
-    const { dsn } = getCurrentHub().getClient()?.getOptions() || {};
+    const { dsn } = hub.getClient()?.getOptions() || {};
     if (!dsn) {
       console.error('No sn');
       return 'Could not retrieve url';
     }
-    if (!args.hint) {
+    if (!hint) {
       console.error('No event hint');
       return 'Could not retrieve url';
     }
     const projectId = getProjectIdFromSentryDsn(dsn);
-    return `${args.baseSentryUrl}/organizations/${args.sentryOrg}/issues/?project=${projectId}&query=${args.hint.event_id}`;
+    return `${baseSentryUrl}/organizations/${sentryOrg}/issues/?project=${projectId}&query=${hint.event_id}`;
   } catch (err) {
     console.error('Error retrieving project ID from DSN', err);
     //TODO: Could put link to a help here
