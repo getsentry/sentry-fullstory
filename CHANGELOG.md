@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.0
 
 Refactoring the whole integration so it's platform agnostic.
 
