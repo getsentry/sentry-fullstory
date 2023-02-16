@@ -4,7 +4,7 @@ The Sentry-FullStory integration seamlessly integrates the Sentry and FullStory 
 
 ## Pre-Requisites
 
-For the Sentry-FullStory integration to work, you must have the [Sentry browser SDK package](https://www.npmjs.com/package/@sentry/browser) and the [FullStory browser SDK package](https://www.npmjs.com/package/@fullstory/browser).
+For the Sentry-FullStory integration to work, you must have the [Sentry Browser SDK package](https://www.npmjs.com/package/@sentry/browser) or the [Sentry React Native SDK package](https://www.npmjs.com/package/@sentry/react-native) and the [FullStory Browser SDK package](https://www.npmjs.com/package/@fullstory/browser) or the [FullStory React Native SDK package](https://www.npmjs.com/package/@fullstory/react-native) respectively.
 
 ### On-Premise Installations
 
@@ -30,20 +30,23 @@ yarn add @sentry/fullstory
 
 To set up the integration, both FullStory and Sentry need to be initialized. Please add the following code:
 
-
-```
+```javascript
 import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/react-native';
 import * as FullStory from '@fullstory/browser';
+// import FullStory from '@fullstory/react-native';
 import SentryFullStory from '@sentry/fullstory';
 
 FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
 
 Sentry.init({
   dsn: '__DSN__',
-  integrations: [ new SentryFullStory('__SENTRY_ORG_SLUG__'), ],
+  integrations: [
+    new SentryFullStory('__SENTRY_ORG_SLUG__', { client: FullStory }),
+  ],
   // ...
 });
-  ```
+```
 
 Replace `__SENTRY_ORG_SLUG__` with the slug of your organization. You can get that value from the URL of your sentry organization. Example: `https://sentry.io/organizations/fullstory/` where `fullstory` would be the value of `__SENTRY_ORG_SLUG__`.
 
