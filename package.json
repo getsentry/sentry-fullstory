@@ -24,15 +24,12 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@fullstory/browser": ">=1.0.0",
-    "@sentry/browser": ">=4.0.0"
+  	"@sentry/core": "4.x || 5.x || 6.x || 7.x"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@fullstory/browser": "^1.0.1",
-    "@sentry/browser": "^5.10.2",
-    "@sentry/types": "^5.10.0",
+    "@sentry/types": "^7.18.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
