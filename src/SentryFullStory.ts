@@ -35,7 +35,7 @@ class SentryFullStory implements Integration {
     // If an error occurs before getCurrentSessionURL is ready, make a note in Sentry and move on.
     // More on getCurrentSessionURL here: https://help.fullstory.com/develop-js/getcurrentsessionurl
     try {
-      const res = this.client.getCurrentSessionURL(true);
+      const res = this.client.getCurrentSessionURL?.(true);
       if (!res) {
         throw new Error('No FullStory session URL found');
       }
