@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+Add support for `@fullstory/browser` v2 (#86)
+
+Thanks @seanparmelee for the contribution!
+
 ## 2.0.0
 
 Refactoring the whole integration so it's platform agnostic.
