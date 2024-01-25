@@ -30,7 +30,7 @@ jobs:
         run: yarn pack
 
       - name: Upload artifact for release via getsentry/craft
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: ${{ github.sha }}
           path: ${{ github.workspace }}/*.tgz
