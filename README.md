@@ -33,11 +33,11 @@ To set up the integration, both FullStory and Sentry need to be initialized. Ple
 ```javascript
 import * as Sentry from '@sentry/browser';
 // import * as Sentry from '@sentry/react-native';
-import * as FullStory from '@fullstory/browser';
+import { FullStory, init } from "@fullstory/browser";
 // import FullStory from '@fullstory/react-native';
 import SentryFullStory from '@sentry/fullstory';
 
-FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
+init({ orgId: '__FULLSTORY_ORG_ID__' });
 
 Sentry.init({
   dsn: '__DSN__',
@@ -53,6 +53,23 @@ Replace `__SENTRY_ORG_SLUG__` with the slug of your organization. You can get th
 
 You also need to replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in the FullStory recording snippet on your [FullStory settings page](https://help.fullstory.com/hc/en-us/articles/360020623514).
 
+
+### Migrating from FullStory v1 to v2
+Migrating from FullStory v1 to v2 can be accomplished by changing the imports of the FullStory client in your Sentry config.
+
+**Before:**
+```javascript
+import * as FullStory from "@fullstory/browser";
+
+FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
+```
+
+**After:**
+```javascript
+import { FullStory, init } from "@fullstory/browser";
+
+init({ orgId: '__FULLSTORY_ORG_ID__' });
+```
 
 ### Sentry Settings Change
 
