@@ -1,3 +1,1 @@
-import SentryFullStory from './SentryFullStory';
-
-export default SentryFullStory;
+export { default, fullStoryIntegration } from './SentryFullStory';
