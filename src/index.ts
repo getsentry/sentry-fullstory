@@ -1,1 +1,1 @@
-export { default, fullStoryIntegration } from './SentryFullStory';
+export { fullStoryIntegration } from './SentryFullStory';

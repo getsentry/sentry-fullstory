@@ -134,12 +134,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sentry/types@^7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.18.0.tgz#8b0eacd19cc9bcd1f14ca5dcaf7065ebd3186632"
-  integrity sha512-bOnyoK1S1chPJ+dAeWJo0srxZ9U48WE5dZFtvKeXoog6JNHY3nqAR/P/uxh9djB4bbwQRMdnGk1zm0bxhOOC6w==
-
-"@sentry/typesv8@npm:@sentry/types@8.4.0":
+"@sentry/types@^8.4.0":
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-8.4.0.tgz#42500005a198ff8c247490434ed55e0a9f975ad1"
   integrity sha512-mHUaaYEQCNukzYsTLp4rP2NNO17vUf+oSGS6qmhrsGqmGNICKw2CIwJlPPGeAkq9Y4tiUOye2m5OT1xsOtxLIw==

@@ -1,9 +1,5 @@
-import type { EventHint, Client } from '@sentry/types';
-import type {
-  Client as ClientV8,
-  EventHint as EventHintV8,
-} from '@sentry/typesv8';
-import type { FullStoryClient } from './types';
+import type { Client, EventHint } from '@sentry/types';
+import { FullStoryClient } from './types';
 
 /**
  * Returns true if Fullstory is installed correctly.
@@ -28,9 +24,7 @@ const isError = (exception: unknown): exception is Error => {
  * Get the message and name properties from the original exception
  * @param {EventHint} hint
  */
-export const getOriginalExceptionProperties = (
-  hint?: EventHint | EventHintV8
-) => {
+export const getOriginalExceptionProperties = (hint?: EventHint) => {
   if (hint && hint.originalException && isError(hint.originalException)) {
     const originalException = hint.originalException;
     const { name, message } = originalException;
@@ -50,14 +44,14 @@ export function getSentryUrl({
   baseSentryUrl,
   client,
 }: {
-  hint?: EventHint | EventHintV8;
+  hint?: EventHint;
   sentryOrg: string;
   baseSentryUrl: string;
-  client?: Client | ClientV8;
+  client: Client;
 }) {
   try {
     // No docs on this but the SDK team assures me it works unless you bind another Sentry client
-    const { dsn } = client?.getOptions() || {};
+    const { dsn } = client.getOptions();
     if (!dsn) {
       console.error('No sn');
       return 'Could not retrieve url';

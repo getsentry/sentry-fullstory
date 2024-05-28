@@ -24,13 +24,12 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@sentry/core": "4.x || 5.x || 6.x || 7.x || 8.x"
+    "@sentry/core": "8.x"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@sentry/types": "^7.18.0",
-    "@sentry/typesv8": "npm:@sentry/types@8.4.0",
+    "@sentry/types": "^8.4.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
@@ -40,5 +39,6 @@
   "volta": {
     "node": "12.19.0",
     "yarn": "1.22.5"
-  }
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
