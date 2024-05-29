@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.0.0
+
+The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 8.x. If you need to support Sentry JavaScript SDK 7.x or lower, please use version 2.x of this integration.
+
+Configuration for the SDK now looks like so:
+
+```js
+import { fullStoryIntegration } from '@sentry/fullstory';
+
+// ...
+
+Sentry.init({
+  dsn: '__DSN__',
+  integrations: [
+    fullStoryIntegration('__SENTRY_ORG_SLUG__', { client: FullStory }),
+  ],
+  // ...
+});
+```
+
+- **BREAKING CHANGES:** feat: add support for sentry v8 (#92)
+
+Thanks @seanparmelee for the contribution!
+
 ## 2.1.0
 
 Add support for `@fullstory/browser` v2 (#86)

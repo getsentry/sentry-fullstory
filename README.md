@@ -11,18 +11,20 @@ For the Sentry-FullStory integration to work, you must have the [Sentry Browser 
 If you are using on-premise Sentry (not sentry.io), then you must have Sentry version 10+.
 
 ## Installation
+
 To install the stable version:
 
 with npm:
+
 ```
 npm install --save @sentry/fullstory
 ```
 
 with yarn:
+
 ```
 yarn add @sentry/fullstory
 ```
-
 
 ## Setup
 
@@ -35,14 +37,14 @@ import * as Sentry from '@sentry/browser';
 // import * as Sentry from '@sentry/react-native';
 import * as FullStory from '@fullstory/browser';
 // import FullStory from '@fullstory/react-native';
-import SentryFullStory from '@sentry/fullstory';
+import { fullStoryIntegration } from '@sentry/fullstory';
 
 FullStory.init({ orgId: '__FULLSTORY_ORG_ID__' });
 
 Sentry.init({
   dsn: '__DSN__',
   integrations: [
-    new SentryFullStory('__SENTRY_ORG_SLUG__', { client: FullStory }),
+    fullStoryIntegration('__SENTRY_ORG_SLUG__', { client: FullStory }),
   ],
   // ...
 });
@@ -50,14 +52,11 @@ Sentry.init({
 
 Replace `__SENTRY_ORG_SLUG__` with the slug of your organization. You can get that value from the URL of your sentry organization. Example: `https://sentry.io/organizations/fullstory/` where `fullstory` would be the value of `__SENTRY_ORG_SLUG__`.
 
-
 You also need to replace `__FULLSTORY_ORG_ID__` with the value of `_fs_org` in the FullStory recording snippet on your [FullStory settings page](https://help.fullstory.com/hc/en-us/articles/360020623514).
-
 
 ### Sentry Settings Change
 
 In order for this integration to work properly, you need to whitelist the `fullStoryUrl` field in your Sentry settings. If you don't, the FullStory URL might be scrubbed because the session ID matches a credit card regex. To do this change, go to `Settings` -> `Security & Privacy` and add `fullStoryUrl` to the `Global Safe Fields` entry.
-
 
 ![Settings](https://i.imgur.com/zk0hShj.png)
 
@@ -66,7 +65,6 @@ In order for this integration to work properly, you need to whitelist the `fullS
 In Sentry, you should see additional context of your error that has the `fullStoryUrl` below the breadcrumbs and other information:
 
 ![Sentry](https://i.imgur.com/O4r4Wvq.png)
-
 
 In FullStory, you should see an event called `Sentry Error` on the right sidebar that has a link to the error in Sentry:
 
