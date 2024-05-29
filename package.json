@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
-    "@sentry/core": "4.x || 5.x || 6.x || 7.x"
+    "@sentry/core": "8.x"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@sentry/types": "^7.18.0",
+    "@sentry/types": "^8.4.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
