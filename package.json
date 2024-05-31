@@ -2,42 +2,52 @@
   "name": "@sentry/fullstory",
   "version": "2.1.0",
   "description": "The Sentry-FullStory integration creates a link from the Sentry Error to the FullStory replay. It also creates a link from the FullStory event to the Sentry error.",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "yarn clean && rollup -c",
-    "watch": "yarn clean && rollup -cw"
+  "repository": "git://github.com/getsentry/sentry-fullstory.git",
+  "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
+  "author": "Sentry",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.18"
   },
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/getsentry/sentry-fullstory.git"
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.mjs",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.ts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
   },
-  "author": "Stephen Cefali",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/getsentry/sentry-fullstory/issues"
+  "publishConfig": {
+    "access": "public"
   },
-  "homepage": "https://github.com/getsentry/sentry-fullstory#readme",
   "peerDependencies": {
     "@sentry/core": "8.x"
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@sentry/types": "^8.4.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.26.3",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^3.8"
+    "@sentry/types": "^8.7.0",
+    "bunchee": "^5.1.5",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "build": "bunchee",
+    "typecheck": "tsc --noEmit",
+    "watch": "bunchee -w"
   },
   "volta": {
-    "node": "12.19.0",
+    "node": "22.2.0",
     "yarn": "1.22.5"
-  }
+  },
+  "sideEffects": false
 }

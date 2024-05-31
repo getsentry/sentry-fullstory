@@ -1,35 +1,20 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "checkJs": false,
-    "alwaysStrict": false,
-    "declaration": true,
-    "declarationMap": false,
-    "downlevelIteration": true,
-    "inlineSources": false,
-    "importHelpers": true,
-    "lib": ["esnext", "dom"],
-    "moduleResolution": "node",
-    "noEmitHelpers": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": false,
-    "resolveJsonModule": true,
-    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
     "strict": true,
-    "strictBindCallApply": false,
-    "experimentalDecorators": true,
-    "module": "es6",
-    "outDir": "./dist",
-    "target": "es5"
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": ["node_modules"]
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "lib": ["ES2020", "DOM"]
+  }
 }
