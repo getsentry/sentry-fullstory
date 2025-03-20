@@ -1,4 +1,4 @@
-import type { Client, EventHint } from '@sentry/types';
+import type { Client, EventHint } from '@sentry/core';
 import { FullStoryClient } from './types';
 
 /**

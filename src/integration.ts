@@ -1,4 +1,4 @@
-import type { Integration } from '@sentry/types';
+import type { Integration } from '@sentry/core';
 import type { FullStoryClient } from './types';
 import {
   doesFullStoryExist,
