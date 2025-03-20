@@ -42,29 +42,29 @@ export function fullStoryIntegration(
             console.error(`Unable to get FullStory session URL: ${reason}`);
           }
         }
-      }
 
-      if (fullStoryUrl) {
-        event.contexts = {
-          ...event.contexts,
-          fullStory: {
-            fullStoryUrl,
-          },
-        };
-      }
+        if (fullStoryUrl) {
+          event.contexts = {
+            ...event.contexts,
+            fullStory: {
+              fullStoryUrl,
+            },
+          };
+        }
 
-      try {
-        fullStoryClient.event('Sentry Error', {
-          sentryUrl: getSentryUrl({
-            baseSentryUrl: baseSentryUrl,
-            sentryOrg,
-            hint,
-            client,
-          }),
-          ...getOriginalExceptionProperties(hint),
-        });
-      } catch (e) {
-        console.debug('Unable to report sentry error details to FullStory');
+        try {
+          fullStoryClient.event('Sentry Error', {
+            sentryUrl: getSentryUrl({
+              baseSentryUrl: baseSentryUrl,
+              sentryOrg,
+              hint,
+              client,
+            }),
+            ...getOriginalExceptionProperties(hint),
+          });
+        } catch (e) {
+          console.debug('Unable to report sentry error details to FullStory');
+        }
       }
 
       return event;
