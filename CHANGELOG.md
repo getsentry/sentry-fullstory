@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1
+
+Fix: don't send FS events for non-errors (#100)
+
+Thanks @seanparmelee for the contribution!
+
 ## 3.0.0
 
 The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 8.x. If you need to support Sentry JavaScript SDK 7.x or lower, please use version 2.x of this integration.

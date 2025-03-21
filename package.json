@@ -37,7 +37,7 @@
   "dependencies": {},
   "devDependencies": {
     "@sentry/types": "^8.7.0",
-    "bunchee": "^5.1.5",
+    "bunchee": "^6.5.0",
     "typescript": "^5.4.5"
   },
   "scripts": {
@@ -46,7 +46,7 @@
     "watch": "bunchee -w"
   },
   "volta": {
-    "node": "22.2.0",
+    "node": "22.14.0",
     "yarn": "1.22.5"
   },
   "sideEffects": false
