@@ -95,3 +95,13 @@ In FullStory, you should see an event called `Sentry Error` on the right sidebar
 We welcome community contributions to `@sentry/fullstory`! If you have an idea for a feature or a bug fix, don't hesitate to open an issue or a pull request.
 
 See the [Contributing Guide](CONTRIBUTING.md) for more information.
+
+## Version Compatibility
+
+The Sentry FullStory integration is compatible with Sentry JavaScript SDK 9.x and above. If you need to support Sentry JavaScript SDK 8.x, please use version 3.x of this integration.
+
+| Sentry FullStory Integration Version | Sentry JavaScript SDK Version |
+| ------------------------------------ | ----------------------------- |
+| 4.x                                  | 9.x                           |
+| 3.x                                  | 8.x                           |
+| 2.x                                  | 7.x                           |
