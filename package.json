@@ -32,11 +32,11 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@sentry/core": "8.x"
+    "@sentry/core": "9.x"
   },
   "dependencies": {},
   "devDependencies": {
-    "@sentry/types": "^8.7.0",
+    "@sentry/core": "^9.7.0",
     "bunchee": "^6.5.0",
     "typescript": "^5.4.5"
   },
