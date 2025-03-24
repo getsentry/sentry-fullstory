@@ -2,7 +2,7 @@
 
 ## 4.0.0
 
-The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 9.x. If you need to support Sentry JavaScript SDK 8.x or lower, please use version 3.x of this integration.
+The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 9.x. If you need to support Sentry JavaScript SDK 8.x, please use version 3.x of this integration.
 
 - **BREAKING CHANGES:** feat!: upgrade to Sentry SDK v9 (#101)
 - **BREAKING CHANGES:** Use TypeScript `5.8.2` to build the Sentry FullStory integration (#102)
