@@ -6,6 +6,8 @@ The `@sentry/fullstory` integration seamlessly integrates the Sentry and FullSto
 
 For the Sentry-FullStory integration to work, you must have the [Sentry Browser SDK package](https://www.npmjs.com/package/@sentry/browser) or the [Sentry React Native SDK package](https://www.npmjs.com/package/@sentry/react-native) and the [FullStory Browser SDK package](https://www.npmjs.com/package/@fullstory/browser) or the [FullStory React Native SDK package](https://www.npmjs.com/package/@fullstory/react-native) respectively.
 
+The Sentry FullStory integration is compatible with Sentry JavaScript SDK 9.x and above. If you need to support Sentry JavaScript SDK 8.x or lower, please use version 3.x of this integration.
+
 ### On-Premise Installations
 
 If you are using on-premise Sentry (not sentry.io), then you must have Sentry version `20.6.0` or higher.
