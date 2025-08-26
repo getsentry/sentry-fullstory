@@ -5,7 +5,8 @@ import { FullStoryClient } from './types';
  * Returns true if Fullstory is installed correctly.
  */
 export function doesFullStoryExist() {
-  return !!window[window['_fs_namespace']];
+  const fsNamespace = window['_fs_namespace'];
+  return !!(fsNamespace && window[fsNamespace]);
 }
 
 /**
