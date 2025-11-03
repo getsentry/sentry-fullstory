@@ -1,3 +1,11 @@
+## Upgrading from `4.x` to `5.x`
+
+The `5.x` of the Sentry FullStory integration supports Sentry JavaScript SDK `10.x` and above. If you need to support Sentry JavaScript SDK 9.x, please use version 4.x of this integration.
+
+## Upgrading from `3.x` to `4.x`
+
+The `4.x` of the Sentry FullStory integration supports Sentry JavaScript SDK `9.x` and above. If you need to support Sentry JavaScript SDK 8.x, please use version 3.x of this integration.
+
 ## Upgrading from `2.x` to `3.x`
 
 The `3.x` of the Sentry FullStory integration supports Sentry JavaScript SDK `8.x` and above. If you need to support Sentry JavaScript SDK 7.x or lower, please use version 2.x of this integration.
