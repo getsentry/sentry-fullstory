@@ -98,10 +98,11 @@ See the [Contributing Guide](CONTRIBUTING.md) for more information.
 
 ## Version Compatibility
 
-The Sentry FullStory integration is compatible with Sentry JavaScript SDK 9.x and above. If you need to support Sentry JavaScript SDK 8.x, please use version 3.x of this integration.
+The Sentry FullStory integration is compatible with Sentry JavaScript SDK 10.x and above. If you need to support Sentry JavaScript SDK 9.x, please use version 4.x of this integration.
 
 | Sentry FullStory Integration Version | Sentry JavaScript SDK Version |
 | ------------------------------------ | ----------------------------- |
+| 5.x                                  | 10.x                           |
 | 4.x                                  | 9.x                           |
 | 3.x                                  | 8.x                           |
 | 2.x                                  | 7.x                           |
