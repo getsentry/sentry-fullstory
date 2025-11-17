@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.0
+
+The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 10.x. If you need to support Sentry JavaScript SDK 9.x, please use version 4.x of this integration. For more details on version compatibility, see the [README](README.md#version-compatibility).
+
+- **BREAKING CHANGES:** feat!: Update Sentry FullStory integration for SDK v10 compatibility (#107)
+
+Thanks @zleight1 and @okize for the contributions!
+
 ## 4.0.0
 
 The Sentry FullStory integration has been updated to be compatible with Sentry JavaScript SDK 9.x. If you need to support Sentry JavaScript SDK 8.x, please use version 3.x of this integration. For more details on version compatibility, see the [README](README.md#version-compatibility).

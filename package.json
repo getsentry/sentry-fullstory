@@ -37,7 +37,7 @@
   "dependencies": {},
   "devDependencies": {
     "@sentry/core": "^10.22.0",
-    "bunchee": "^6.5.0",
+    "bunchee": "^6.6.2",
     "typescript": "5.8.2"
   },
   "scripts": {
