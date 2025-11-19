@@ -1,4 +1,4 @@
-name: Deploy Prep
+name: Build and Test
 
 on:
   push:
@@ -8,22 +8,20 @@ on:
   pull_request:
 
 jobs:
-  deploy_prep:
-    name: Deploy Prep
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'yarn'
+          node-version-file: 'package.json'
 
       - name: Install node modules
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
-      - name: Build distributables
+      - name: Build Package
         run: yarn build
 
       - name: Generate tarball artifact
