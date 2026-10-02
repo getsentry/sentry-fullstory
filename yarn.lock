@@ -191,10 +191,17 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.53.2.tgz#d9ab606437fd072b2cb7df7e54bcdc7f1ccbe8b4"
   integrity sha512-k+/Rkcyx//P6fetPoLMb8pBeqJBNGx81uuf7iljX9++yNBVRDQgD04L+SVXmXmh5ZP4/WOp4mWF0kmi06PW2tA==
 
-"@sentry/core@^10.22.0":
-  version "10.22.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.22.0.tgz#962fd47c5cfa1fabe5f142ba59ae87689fdd6ee6"
-  integrity sha512-V1oeHbrOKzxadsCmgtPku3v3Emo/Bpb3VSuKmlLrQefiHX98MWtjJ3XDGfduzD5/dCdh0r/OOLwjcmrO/PZ2aw==
+"@sentry/conventions@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@sentry/conventions/-/conventions-0.24.0.tgz#b65931682a7150ffe7914e34af908b7afb2b87ab"
+  integrity sha512-pmmF2mLy7A23z8gnLRG87lYu4SSPIBColtfqu9cfkh1omn/0CI3w0/AqZ/uf/VGAtM/wJMN61J58Ks/IWBCHpQ==
+
+"@sentry/core@^11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-11.2.0.tgz#4587db3b015952c444514e85b38e903409969bbd"
+  integrity sha512-vkJDLDVk0WmMN7cixXULEkW2sopJwcTP3ODFkdrRFUJILARHS855TzJ3WG7WarNXtlzKY6ALzmsGPzHMZQfMrA==
+  dependencies:
+    "@sentry/conventions" "^0.24.0"
 
 "@swc/core-darwin-arm64@1.15.1":
   version "1.15.1"
